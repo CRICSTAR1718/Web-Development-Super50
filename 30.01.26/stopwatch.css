@@ -1,0 +1,36 @@
+.parent{
+    height:300px;
+    width:600px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:50px;
+}
+.child{
+    height:100px;
+    width:100px;
+    border: 1px solid black;
+    
+}
+.timer{
+    display: flex;
+    gap: 30px;
+}
+.timer-child{
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+    width: 80px;
+    border: 2px solid black;
+    align-items:center;
+    justify-content:center;
+}
+#hr, #min, #sec{
+    height:50px;
+    width: 50px;
+    border: 2px solid black;
+    text-align: center;
+    font-size: 35px;
+}

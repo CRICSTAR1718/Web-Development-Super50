@@ -1,0 +1,21 @@
+body{
+    display:flex
+}
+main{
+    display:grid;
+    grid-template-columns:repeat(3,150px);
+    grid-template-rows: repeat(3, 150px);
+    width: fit-content;
+}
+main div{
+    background-color: rgb(223, 223, 40);
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    font-family: 'Times New Roman', Times, serif;
+}
+#winArea{
+    visibility:hidden;
+}

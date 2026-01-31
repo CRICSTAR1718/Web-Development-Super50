@@ -1,0 +1,24 @@
+#root{
+    height:400px;
+    width: 400px;
+    background-color: aqua;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+#parent{
+    height:250px;
+    width: 250px;
+    background-color: rgb(172, 53, 142);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+#child{
+    height:100px;
+    width: 100px;
+    background-color: rgb(59, 214, 28);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
