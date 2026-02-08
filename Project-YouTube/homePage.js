@@ -1640,9 +1640,12 @@ const data={
         }
     ]
 }
-console.log(data);
+// console.log(data);
 
 const rootElement=document.getElementById("root");
+const searchSuggestionsContainerElement=document.getElementById("search-suggestions-container");
+const searchInputElement=document.getElementById("search-input");
+
 
 const showTrendingVideos=()=>{
     const {list}=data;
@@ -1674,3 +1677,76 @@ const showTrendingVideos=()=>{
     });
 };
 showTrendingVideos();
+
+const getSuggestionApI=(searchText)=>{
+    console.log("API called", searchText);
+    // const req=fetch(`https://youtube138.p.rapidapi.com/auto-complete/?q=${searchText}&hl=en&gl=US`,{
+    //     method: "GET",
+    //     header:{
+    //         "x-rapidapi-host":"youtube138.p.rapidapi.com",
+    //         "x-rapidapi-key":"dac8b1a67emsh58a6f7b0f1a4393p1923b8jsne9f35fb775aa"
+    //     },
+    // });
+    // req
+    //     .then((resp)=>{
+    //         const pr2=resp.json();
+    //         pr2.then((data)=>{
+    //             renderSuggestionList(data);
+                    renderSuggestionList();
+    //         });
+    //     })
+    //     .catch((err)=>{
+    //         alert("Suggestions error: ", err.message);
+    //     });
+    
+};
+
+let id=null;
+const getSmartSuggestionAPI=(txt)=>{
+    clearTimeout(id);
+    id=setTimeout(()=>{
+        getSuggestionApI(txt);
+    },600);
+};
+const handleAutoSuggest=(e)=>{
+    const searchText=e.target.value;
+    getSmartSuggestionAPI(searchText);
+};
+
+const renderSuggestionList= (obj)=>{
+    searchSuggestionsContainerElement.innerHTML='';
+    const dummyObj={
+        query: "comedy",
+        results: [
+            "comedy",
+            "comedy stand up",
+            "comedy movies",
+            "comedy darbar",
+            "comedy nights with champions",
+            "comedy video",
+            "comedy scenes telugu",
+            "comedy shorts",
+            "comedy special",
+            "comedy central",
+            "comedy club",
+            "comedy movies 2024 full movie",
+            "comedy movies 2025 full movie",
+            "comedy darbar new episode",
+        ],
+    };
+    const {query,results}=dummyObj;
+    results.forEach((result)=>{
+        const newText=document.createElement('p');
+        newText.innerHTML=`<b>${result.substring(0, query.length)}</b>${result.substring(query.length)}`;
+        newText.addEventListener("click", (e)=>{
+            searchInputElement.value=e.target.innerText;
+            searchSuggestionsContainerElement.innerHTML="";
+        });
+        searchSuggestionsContainerElement.appendChild(newText);
+    });
+};
+
+const handleSearch=()=>{
+    const val=searchInputElement.value;
+    window.open(`./search-page.html?searchText=${val}`, "_self");
+};

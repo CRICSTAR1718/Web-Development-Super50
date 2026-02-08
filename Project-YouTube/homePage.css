@@ -60,7 +60,7 @@ header{
     header{
         display:block;
         background-color: bisque;
-        height: 7rem;
+        height: 10rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -69,6 +69,7 @@ header{
     .search-container{
         display: flex;
         width:60%;
+        position: relative;
     }
     .search-container input{
         flex-grow:1;
@@ -76,9 +77,30 @@ header{
         border-top-left-radius: 0.75rem;
         border-bottom-left-radius: 0.75rem;
     }
-    .search-container button{
+    #search-suggestions-container{
+        position: absolute;
+        background-color: aliceblue;
+        width: 85%;
+        top:3rem;
+        left:0.5rem;
+        display: flex;
+        flex-direction: column;
+        border-bottom-left-radius: 0.75rem;
+        border-bottom-right-radius: 0.75rem;
+    }
+    #search-suggestions-container p{
+        padding: 0.75rem;
+        border-bottom: 1px solid lightgray;
+        cursor: pointer;
+        transition: all 300ms ease-in-out;
+    }
+    #search-suggestions-container p:hover{
+        background-color: antiquewhite;
+    }
+    #search-button{
         padding: 0.7rem 1.25rem;
         border-top-right-radius: 0.75rem;
         border-bottom-right-radius: 0.75rem;
+        cursor: pointer;
     }
 }
