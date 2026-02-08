@@ -1683,7 +1683,7 @@ const showTrendingVideos=(data)=>{
 // showTrendingVideos();
 
 const getSuggestionApI=(searchText)=>{
-    // console.log("API called", searchText);
+    console.log("API called", searchText);
     // const req=fetch(`https://youtube138.p.rapidapi.com/auto-complete/?q=${searchText}&hl=en&gl=US`,{
     //     method: "GET",
     //     headers:{
