@@ -1,17 +1,17 @@
 const getTrendingVideo=()=>{
-    // const request=fetch("https://youtube138.p.rapidapi.com/v2/trending", {
-    //     method: "GET",
-    //     headers: {
-    //         "x-rapidapi-host" :"youtube138.p.rapidapi.com",
-    //         "x-rapidapi-key" :"dac8b1a67emsh58a6f7b0f1a4393p1923b8jsne9f35fb775aa",
-    //     },
-    // });
-    // request.then((resp)=>{
-    //     const pr2=resp.json();
-    //     pr2.then((data)=>{
-    //         showTrendingVideos(data);
-    //     });
-    // });
+    const request=fetch("https://youtube138.p.rapidapi.com/v2/trending", {
+        method: "GET",
+        headers: {
+            "x-rapidapi-host" :"youtube138.p.rapidapi.com",
+            "x-rapidapi-key" :"dac8b1a67emsh58a6f7b0f1a4393p1923b8jsne9f35fb775aa",
+        },
+    });
+    request.then((resp)=>{
+        const pr2=resp.json();
+        pr2.then((data)=>{
+            showTrendingVideos(data);
+        });
+    });
 };
 getTrendingVideo();
 
@@ -1684,23 +1684,23 @@ const showTrendingVideos=(data)=>{
 
 const getSuggestionApI=(searchText)=>{
     console.log("API called", searchText);
-    // const req=fetch(`https://youtube138.p.rapidapi.com/auto-complete/?q=${searchText}&hl=en&gl=US`,{
-    //     method: "GET",
-    //     headers:{
-    //         "x-rapidapi-host":"youtube138.p.rapidapi.com",
-    //         "x-rapidapi-key":"dac8b1a67emsh58a6f7b0f1a4393p1923b8jsne9f35fb775aa"
-    //     },
-    // });
-    // req
-    //     .then((resp)=>{
-    //         const pr2=resp.json();
-    //         pr2.then((data)=>{
-    //             renderSuggestionList(data);
-    //         });
-    //     })
-    //     .catch((err)=>{
-    //         alert("Suggestions error: ", err.message);
-    //     });
+    const req=fetch(`https://youtube138.p.rapidapi.com/auto-complete/?q=${searchText}&hl=en&gl=US`,{
+        method: "GET",
+        headers:{
+            "x-rapidapi-host":"youtube138.p.rapidapi.com",
+            "x-rapidapi-key":"dac8b1a67emsh58a6f7b0f1a4393p1923b8jsne9f35fb775aa"
+        },
+    });
+    req
+        .then((resp)=>{
+            const pr2=resp.json();
+            pr2.then((data)=>{
+                renderSuggestionList(data);
+            });
+        })
+        .catch((err)=>{
+            alert("Suggestions error: ", err.message);
+        });
 };
 
 let id=null;
