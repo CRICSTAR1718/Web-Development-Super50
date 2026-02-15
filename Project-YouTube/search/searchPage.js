@@ -4,26 +4,26 @@ const encodedSearchText = queryArray[queryArray.length - 1];
 console.log("search text--->", decodeURI(encodedSearchText));
 const rootElem = document.getElementById("search-cards-container");
 const getSearchResults = () => {
-    const req = fetch(
-        `https://youtube138.p.rapidapi.com/search/?q=${encodedSearchText}&hl=en&gl=US`,
-        {
-        method: "GET",
-        headers: {
-            "x-rapidapi-host": "youtube138.p.rapidapi.com",
-            "x-rapidapi-key": "dac8b1a67emsh58a6f7b0f1a4393p1923b8jsne9f35fb775aa",
-        },
-        },
-    );
-    req
-        .then((res) => {
-        const pr2 = res.json();
-        pr2.then((data) => {
-            renderSearchResults(data);
-        });
-        })
-        .catch((err) => {
-        alert("Failed to get Search Results::", err.message);
-        });
+    // const req = fetch(
+    //     `https://youtube138.p.rapidapi.com/search/?q=${encodedSearchText}&hl=en&gl=US`,
+    //     {
+    //     method: "GET",
+    //     headers: {
+    //         "x-rapidapi-host": "youtube138.p.rapidapi.com",
+    //         "x-rapidapi-key": "dac8b1a67emsh58a6f7b0f1a4393p1923b8jsne9f35fb775aa",
+    //     },
+    //     },
+    // );
+    // req
+    //     .then((res) => {
+    //     const pr2 = res.json();
+    //     pr2.then((data) => {
+    //         renderSearchResults(data);
+    //     });
+    //     })
+    //     .catch((err) => {
+    //     alert("Failed to get Search Results::", err.message);
+    //     });
 };
 const renderSearchResults = (data) => {
     const { contents } = data;
