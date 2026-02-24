@@ -6,12 +6,12 @@ const readFileText = () => {
 };
 
 const startTime = performance.now();
-for (let i = 0; i < 1; i++) {
+for (let i = 0; i < 20; i++) {
     readFileText();
     const endTime = performance.now();
     console.log(i, "---------->", endTime-startTime);
     
 }
 
-
-// console.log("-->", endTime - startTime);
+const endTime = performance.now();
+console.log("END------------->", endTime-startTime);
