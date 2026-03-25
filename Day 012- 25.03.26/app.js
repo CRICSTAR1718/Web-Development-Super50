@@ -2,14 +2,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 // const { Schema } = mongoose;
 const app = express();
-mongoose.connect("mongodb+srv://Adeela:Adeela1609@cluster0.akwko7c.mongodb.net/?appName=Cluster0", {
-    dbName: "super50",
-}).then(() => {
-        console.log("Connected to DB");
-    })
-    .catch((err) => {
-    console.log("Error in DB Connection", err.message);
-});
+// mongoose.connect("mongodb+srv://Adeela:Adeela1609@cluster0.akwko7c.mongodb.net/?appName=Cluster0", {
+//     dbName: "super50",
+// }).then(() => {
+//         console.log("Connected to DB");
+//     })
+//     .catch((err) => {
+//     console.log("Error in DB Connection", err.message);
+// });
 
 // const movieSchema= new mongoose.Schema({
 //     title: String,
@@ -62,6 +62,42 @@ app.use(express.json());
 //     res.json(result);
 // });
 
+
+app.post("/movies", async (req, res) => {
+    try {
+        const movieData = req.body;
+        let result;
+        try {
+            result = await Movies.insertOne(movieData);
+        }
+        catch (err)
+        {
+            res.status(400);
+            res.json({
+                success: false,
+                message: err.message,
+            });
+            return;
+        }
+        console.log("result: ", result);
+        res.json({
+            success: true,
+            message: "Movie inserted",
+            data: {
+                movie: result,
+            },
+        });
+    }
+    catch (err) {
+        console.log("Error in POST movies: ", err.message);
+        res.status(500);
+        res.json({
+            success: false,
+            message: "Internal Server Error"
+        });
+    }
+});
+
 // app.post("/movies", async (req, res) => {
 //     try {
 //         const result = await Movies.insertOne({
@@ -90,28 +126,28 @@ app.use(express.json());
 //     }
 // });
 
-app.post("/movies", async (req, res) => {
-    try {
-        const movieData = req.body;
-        const result = await Movies.insertOne(movieData);
-        console.log("result: ", result);
-        res.json({
-            success: true,
-            message: "Movie inserted",
-            data: {
-                movie: result,
-            },
-        });
-    }
-    catch (err) {
-        console.log("Error in POST movies: ", err.message);
-        res.status(500);
-        res.json({
-            success: false,
-            message: "Internal Server Error"
-        });
-    }
-});
+// app.post("/movies", async (req, res) => {
+//     try {
+//         const movieData = req.body;
+//         const result = await Movies.insertOne(movieData);
+//         console.log("result: ", result);
+//         res.json({
+//             success: true,
+//             message: "Movie inserted",
+//             data: {
+//                 movie: result,
+//             },
+//         });
+//     }
+//     catch (err) {
+//         console.log("Error in POST movies: ", err.message);
+//         res.status(500);
+//         res.json({
+//             success: false,
+//             message: "Internal Server Error"
+//         });
+//     }
+// });
 
 app.get("/", (req, res) => {
     console.log("/ route hit")
