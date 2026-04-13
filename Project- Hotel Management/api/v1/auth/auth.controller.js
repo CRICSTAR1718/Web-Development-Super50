@@ -12,4 +12,4 @@ const loginController = () => {
     // send token in cookie
 };
 
-module.exports = { loginController, signupController };
+module.exports = { loginController, signupController};
