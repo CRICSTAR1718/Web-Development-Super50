@@ -1,10 +1,11 @@
-import {loginController, signupController} from "./auth.controller"
 const { Router } = require("express");
+const { signupController, loginController } = require("./auth.controllers.js");
+const { validateSignup } = require("./auth.middlewares.js");
 
 const authRouter = Router();
 
-authRouter.use("/signup", validateSignup, signupController);
+authRouter.post("/signup", validateSignup, signupController);
 
-authRouter.use("/login", loginController);
+authRouter.post("/login", loginController);
 
 module.exports = { authRouter };

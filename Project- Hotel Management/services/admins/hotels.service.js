@@ -7,8 +7,8 @@ const createHotelService = async (data) => {
 
 const updateHotelService = async ({ hotelId, dataToUpdate }) => {
     const newHotel = await Hotel.findByIdAndUpdate(hotelId, dataToUpdate, {
-        new: true, // new default is false
-        upsert: false, // upsert default is false
+        new: true, 
+        upsert: false, 
     });
     return newHotel;
 };
