@@ -33,7 +33,7 @@ const loginController = async (req, res) => {
         const { email, password } = req.body;
         const existingUser = await User.findOne({ email });
         if (!existingUser) {
-            return res.status(400).json({ message: "User does not exist" });
+            return res.status(400).json({ message: "Invalid credentials" });
         }
         const isMatch = await bcrypt.compare(password, existingUser.password);
         if (!isMatch) {
@@ -42,11 +42,17 @@ const loginController = async (req, res) => {
         const token = jwt.sign(
             { userId: existingUser._id, email: existingUser.email },
             process.env.JWT_SECRET,
-            { expiresIn: "1d" }
+            { expiresIn: "7d" }
         );
+        
+        res.cookie("authorization", token, {
+            httpOnly: true,      
+            maxAge: 24 * 60 * 60,
+            secure: true,
+        });
+
         res.status(200).json({
             message: "Login successful",
-            token,
             userId: existingUser._id
         });
     } catch (error) {
