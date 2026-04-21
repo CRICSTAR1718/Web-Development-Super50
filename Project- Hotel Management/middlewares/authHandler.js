@@ -1,4 +1,4 @@
-const jwt=require("jsonwebtokenn")
+const jwt=require("jsonwebtoken")
 const validateUser = (req, res, next) => {
     // authorization cookie?
     // token ? valid ?
