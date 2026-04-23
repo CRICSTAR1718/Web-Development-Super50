@@ -40,15 +40,16 @@ const loginController = async (req, res) => {
             return res.status(400).json({ message: "Invalid credentials" });
         }
         const token = jwt.sign(
-            { userId: existingUser._id, email: existingUser.email },
+            { userId: existingUser._id, email: existingUser.email, role:existingUser.role},
             process.env.JWT_SECRET,
             { expiresIn: "7d" }
         );
         
-        res.cookie("authorization", token, {
+        res.cookie("authorization", `Bearer ${token}`, {
             httpOnly: true,      
             maxAge: 24 * 60 * 60,
             secure: true,
+            sameSite:"strict",
         });
 
         res.status(200).json({

@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config();
-
+const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT ?? 3000;
 
 const express = require("express");
@@ -13,7 +13,7 @@ const app = express();
 app.use(morgan("dev")); // request-response cycle log (status code, route, time)
 
 app.use(express.json()); // request body parsing in json format
-
+app.use(cookieParser());
 app.use("/api/v1", v1Router);
 
 app.listen(PORT, () => {
