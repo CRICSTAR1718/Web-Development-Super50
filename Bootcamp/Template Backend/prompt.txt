@@ -1,0 +1,97 @@
+Create a basic express application with typescript.
+Make sure to follow these rules: 
+
+1. we will keep separate modules.
+    The path would be like src/app.<module-name>
+
+2. Inside every module we will follow this structure:
+    <module-name>.routes.ts 
+    dto/<method>--<module-name>routes.ts
+    <module-name>.controller.ts
+    <module-name>.service.ts
+    <module-name>.schema.ts
+
+3. Inside the src folder we will have these folders:
+    - app
+    - config
+    - middlewares
+    - utils
+    - constants
+    - types
+    - loggers
+
+    and these files:
+    - app.ts
+    - server.ts
+
+4. Use functional programming way for writing the code.
+   You can use classes for specific use cases like creating error classes, creating logger classes, etc.
+
+5. Use winston logger for logging. Use this logger utility everywhere to log entry/exit to controllers, dal and services. Also
+   log error and exceptions.
+   Never use console.log directly.
+
+6. Create response classes called APISuccessResponse and APIErrorResponse. Keep it in utils.
+
+7. Create error classes and these errors will be thrown at required places. Keep these error classes in utils.
+
+8. The error handling will be done in error handling middleware. This middleware will catch all the errors thrown in the application and send the appropriate response to the client.
+
+9. Create a custom utility of asynchandler to ease error handling flow.
+
+10. Use zod for DTOs validation. Infer typescript types from zod schemas.
+
+11. Use Drizzle ORM  with drizzle-kit for migrations. 
+
+12. Env will be extracted in config/env.config.ts 
+
+13.Store the common typexript types in src/types.
+
+14.Create zod validation middleware to be used for validating zod schemasa and error handling middleware in src/middlewares.
+
+15. Don't keep separate env for environment. We will keep same .env for staging, testing, developent, production. Also do not add any environment specific customization anywhere in the code.
+
+16. Purpose of these files: 
+    - app.ts: 
+        - Register middlewares
+        - Register routes
+    - server.ts:
+        - load env
+        - database connection
+        - create express app
+        - start server
+
+17. Set up database to connect with supabase(postgres).
+
+18. API response convention:
+    Success:
+        {
+            success: true,
+            message: "...",
+            data: {...}
+        }
+
+    Error: 
+        {
+            success: false,
+            message: "...",
+            errors?: [...]
+        }
+
+19. Setup these middlewares:
+    cors
+    helmet
+    express.json (body parser)
+    cookie-parser
+    morgan 
+
+20. Have a health check API "/health"
+
+21. Put the products router at "/api/v1/products"
+
+22. Create simple CRUD REST APIs on products.
+
+23. This project does not have any testing setup requirement.
+
+
+    

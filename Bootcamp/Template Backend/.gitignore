@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment variables
+.env
+
+# Drizzle migrations (optional — commit if you want migration history in repo)
+# drizzle/
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
