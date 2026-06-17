@@ -23,6 +23,11 @@ const createApp = (): express.Application => {
   );
   app.use(helmet());
   app.use(morgan("dev"));
+  // app.use((_req: Request, res: Response, next: NextFunction) => {
+  //   setTimeout(() => {
+  //     next();
+  //   }, 5000);
+  // });
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(cookieParser());
