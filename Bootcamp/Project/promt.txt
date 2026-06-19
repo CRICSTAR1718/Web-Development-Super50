@@ -1,0 +1,51 @@
+Please create a simple React(Vite)+JavaScript app.
+Follow the following guideline:
+
+1.  Use React Router v7 using <BrowserRouter> <Routes>
+
+2.  Make a constant file for all API Endpoints as well as frontend Routes
+
+3.  Use single axios instance for all API calls
+
+4.  Tailwind CSS (strictly v4) for styling
+
+5.  Use shadcn/ui component library for basic components like input, button etc
+
+6.  Use React-Toastify library for toasts (create a centralized utility for it)
+
+7.  Manage error handling using try, catch and use errorToast instance to show errors or successToast instance to show success messages
+
+8.  Store environment variables in .env
+
+9.  Have a src folder:
+        inside src folder have these folders:
+            api
+            components
+            hooks
+            lib
+            pages
+            constants;
+            utils
+
+10. No need to have:
+        State management library or context API
+        Protected Routes
+        Any validator or provider forms
+
+11. About the frontend:
+        It will have:
+        Homepage
+            - basic welcome section and then list products (10)
+              -use https://dummyjson.com/products?limit=100 (use any random 10 products)
+            - The search box at top with search button
+            - Type abything in search box and then hit search - it will redirect to /find?q={{searchText}}
+        Search pages
+            -it will show list of products
+                -use https://dummyjson.com/products/search?q={{searchText}}
+            - Clicking on any product will redirect the user to /view/{{product-id}}
+        View Page:
+            - It will shoe information of the product
+                - Use https://dummyjson.com/products.{{product-id}}
+        There will be a bavbar with Home Button, Searchbox will also be on the Navbar only
+        This will be vissible to all the pages, so lets make a layout for it.
+        
