@@ -1,76 +1,97 @@
 import { useEffect, useState } from "react";
+import "./App.css";
 
 const App = () => {
   const [timeInSeconds, setTimeInSeconds] = useState(0);
   const [laps, setLaps] = useState([]);
   const [isTimerRunning, setIsTimerRunning] = useState(true);
-  console.log("(outside) :  timeInSeconds:", timeInSeconds);
-  console.log("(outside) : isTimerRunning:", isTimerRunning);
 
   useEffect(() => {
-    let id = null;
-    console.log("(inside) :  timeInSeconds:", timeInSeconds);
-    console.log("(inside) : isTimerRunning:", isTimerRunning);
+    if (!isTimerRunning) return;
 
-    if (isTimerRunning) {
-      id = setTimeout(() => {
-        setTimeInSeconds((prevTime) => {
-          return prevTime + 1;
-        });
-      }, 1000);
-    }
+    const id = setInterval(() => {
+      setTimeInSeconds((prevTime) => prevTime + 1);
+    }, 1000);
 
-    return () => {
-      clearTimeout(id);
-    };
-  }, [isTimerRunning, timeInSeconds]); // if any of the dependency change --> then the callback function will run
-  // every-time :: before running the callback function, react will always run the cleanup function from previous callback
+    return () => clearInterval(id);
+  }, [isTimerRunning]);
 
-  const seconds = timeInSeconds % 60; // derived variable (somehow dependent on state variable)
+  const seconds = timeInSeconds % 60;
   const minutes = Math.floor(timeInSeconds / 60) % 60;
   const hours = Math.floor(timeInSeconds / 3600);
-
   const uniformSecondValue = seconds.toString().padStart(2, "0");
 
+  const formattedTime = `${hours}:${minutes}:${uniformSecondValue}`;
+
   const handleAddLap = () => {
-    setLaps((prev) => {
-      const newArr = [...prev];
-      newArr.push(`${hours}:${minutes}:${uniformSecondValue}`);
-      return newArr;
-    });
+    setLaps((prev) => [...prev, formattedTime]);
   };
 
   const toggleTimer = () => {
-    setIsTimerRunning((prev) => {
-      return !prev;
-    });
+    setIsTimerRunning((prev) => !prev);
   };
 
   const handleReset = () => {
     setIsTimerRunning(false);
     setTimeInSeconds(0);
+    setLaps([]);
   };
 
   return (
-    <div>
-      <h2>
-        {hours}:{minutes}:{uniformSecondValue}
-      </h2>
-      <button onClick={handleAddLap}>Lap</button>
-      {isTimerRunning ? (
-        <button onClick={toggleTimer}>PAUSE</button>
-      ) : (
-        <button onClick={toggleTimer}>PLAY</button>
-      )}
-      <button onClick={handleReset}>RESET</button>
+    <div className="sw-app">
+      <div className="sw-card">
+        <header className="sw-header">
+          <div className="sw-title">Stopwatch</div>
+          <div className="sw-subtitle">
+            {isTimerRunning ? "Running" : "Paused"}
+          </div>
+        </header>
 
-      <ul>
-        {laps.map((lap, idx) => {
-          return <li key={idx}>{lap}</li>;
-        })}
-      </ul>
+        <main className="sw-main">
+          <div className="sw-time" aria-live="polite">
+            {formattedTime}
+          </div>
+
+          <div className="sw-controls">
+            <button className="sw-btn sw-btn-secondary" onClick={handleAddLap}>
+              Lap
+            </button>
+
+            {isTimerRunning ? (
+              <button className="sw-btn sw-btn-primary" onClick={toggleTimer}>
+                Pause
+              </button>
+            ) : (
+              <button className="sw-btn sw-btn-primary" onClick={toggleTimer}>
+                Play
+              </button>
+            )}
+
+            <button className="sw-btn sw-btn-danger" onClick={handleReset}>
+              Reset
+            </button>
+          </div>
+        </main>
+
+        <section className="sw-laps" aria-label="Lap list">
+          <div className="sw-laps-header">Laps</div>
+          {laps.length === 0 ? (
+            <div className="sw-empty">No laps yet. Click “Lap”.</div>
+          ) : (
+            <ol className="sw-lap-list">
+              {laps.map((lap, idx) => (
+                <li key={idx} className="sw-lap-item">
+                  <span className="sw-lap-index">#{idx + 1}</span>
+                  <span className="sw-lap-time">{lap}</span>
+                </li>
+              ))}
+            </ol>
+          )}
+        </section>
+      </div>
     </div>
   );
 };
 
 export default App;
+

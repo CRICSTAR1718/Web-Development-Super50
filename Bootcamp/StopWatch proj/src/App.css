@@ -1,0 +1,174 @@
+/* Dark theme stopwatch styling */
+
+.sw-app {
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    padding: 28px 16px;
+    background: radial-gradient(1200px 700px at 20% -10%, rgba(192, 132, 252, 0.22), transparent 55%),
+        radial-gradient(900px 600px at 90% 0%, rgba(170, 59, 255, 0.16), transparent 45%),
+        #0f1016;
+    color: #e5e7eb;
+}
+
+.sw-card {
+    width: 100%;
+    max-width: 680px;
+    background: rgba(20, 21, 29, 0.75);
+    border: 1px solid rgba(46, 48, 58, 0.9);
+    border-radius: 18px;
+    box-shadow:
+        rgba(0, 0, 0, 0.55) 0 20px 60px -20px,
+        rgba(0, 0, 0, 0.35) 0 10px 20px -10px;
+    overflow: hidden;
+}
+
+.sw-header {
+    padding: 18px 20px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: 1px solid rgba(46, 48, 58, 0.9);
+    background: linear-gradient(180deg, rgba(31, 32, 40, 0.85), rgba(20, 21, 29, 0));
+}
+
+.sw-title {
+    font-size: 18px;
+    font-weight: 650;
+    letter-spacing: 0.2px;
+}
+
+.sw-subtitle {
+    font-size: 13px;
+    color: rgba(243, 244, 246, 0.78);
+}
+
+.sw-main {
+    padding: 26px 20px 18px;
+}
+
+.sw-time {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+        monospace;
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: -1.2px;
+    text-align: center;
+    margin-bottom: 18px;
+    color: #f3f4f6;
+    text-shadow: 0 0 24px rgba(192, 132, 252, 0.14);
+}
+
+.sw-controls {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.sw-btn {
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(46, 48, 58, 0.9);
+    background: rgba(31, 32, 40, 0.55);
+    color: rgba(243, 244, 246, 0.92);
+    font-weight: 650;
+    letter-spacing: 0.1px;
+    cursor: pointer;
+    transition: transform 120ms ease, border-color 120ms ease, background 120ms ease, box-shadow 120ms ease;
+    user-select: none;
+}
+
+.sw-btn:hover {
+    transform: translateY(-1px);
+    border-color: rgba(192, 132, 252, 0.65);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+.sw-btn:active {
+    transform: translateY(0px);
+}
+
+.sw-btn-primary {
+    background: linear-gradient(180deg, rgba(192, 132, 252, 0.22), rgba(192, 132, 252, 0.10));
+    border-color: rgba(192, 132, 252, 0.45);
+}
+
+.sw-btn-secondary {
+    background: linear-gradient(180deg, rgba(156, 163, 175, 0.14), rgba(31, 32, 40, 0.45));
+}
+
+.sw-btn-danger {
+    background: linear-gradient(180deg, rgba(248, 113, 113, 0.16), rgba(31, 32, 40, 0.45));
+    border-color: rgba(248, 113, 113, 0.35);
+}
+
+.sw-laps {
+    padding: 0 20px 20px;
+}
+
+.sw-laps-header {
+    margin-top: 12px;
+    font-weight: 700;
+    color: rgba(243, 244, 246, 0.88);
+    letter-spacing: 0.2px;
+}
+
+.sw-empty {
+    margin-top: 10px;
+    color: rgba(156, 163, 175, 0.9);
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(31, 32, 40, 0.35);
+    border: 1px solid rgba(46, 48, 58, 0.9);
+}
+
+.sw-lap-list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sw-lap-item {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(31, 32, 40, 0.35);
+    border: 1px solid rgba(46, 48, 58, 0.9);
+}
+
+.sw-lap-index {
+    width: 44px;
+    height: 26px;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    background: rgba(192, 132, 252, 0.12);
+    border: 1px solid rgba(192, 132, 252, 0.28);
+    color: rgba(243, 244, 246, 0.92);
+    font-size: 13px;
+    font-weight: 750;
+}
+
+.sw-lap-time {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+        monospace;
+    font-weight: 750;
+    color: rgba(243, 244, 246, 0.95);
+}
+
+@media (max-width: 520px) {
+    .sw-time {
+        font-size: 44px;
+    }
+
+    .sw-controls {
+        grid-template-columns: 1fr;
+    }
+}
