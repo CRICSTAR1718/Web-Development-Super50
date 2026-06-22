@@ -20,8 +20,11 @@ const App = () => {
   const minutes = Math.floor(timeInSeconds / 60) % 60;
   const hours = Math.floor(timeInSeconds / 3600);
   const uniformSecondValue = seconds.toString().padStart(2, "0");
+  const uniformMinutceValue = minutes.toString().padStart(2, "0");
+  const uniformHourValue = hours.toString().padStart(2, "0");
 
-  const formattedTime = `${hours}:${minutes}:${uniformSecondValue}`;
+
+  const formattedTime = `${uniformHourValue}:${uniformMinutceValue}:${uniformSecondValue}`;
 
   const handleAddLap = () => {
     setLaps((prev) => [...prev, formattedTime]);
